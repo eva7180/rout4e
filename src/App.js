@@ -3,18 +3,18 @@ import React from "react";
 const Route = ({ path, component: Component }) =>
   window.location.pathname === path ? <Component /> : null;
 
+const Link = ({ children, to }) => (
+  <div>
+    <a href={to}>{children}</a>
+  </div>
+);
+
 function App() {
   return (
     <>
-      <div>
-        <a href="/">Home</a>
-      </div>
-      <div>
-        <a href="/about">About</a>
-      </div>
-      <div>
-        <a href="/contact">Contact</a>
-      </div>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Link to="/contact">Contact</Link>
       <div>
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
