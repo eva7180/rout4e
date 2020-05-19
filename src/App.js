@@ -39,6 +39,14 @@ const BrowserRouter = ({ children }) => {
   );
 };
 
+const Switch = ({ children }) => {
+  const { path } = useContext(PathContext);
+  return (
+    React.Children.map(children, (child) =>
+      child.props.path === path ? child : null
+    )[0] ?? null
+  );
+};
 // ----------------
 
 function App() {
@@ -48,10 +56,12 @@ function App() {
       <Link to="/about">About</Link>
       <Link to="/contact">Contact</Link>
       <div>
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
       </div>
     </BrowserRouter>
   );
